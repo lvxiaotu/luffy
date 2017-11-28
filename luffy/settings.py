@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app01.mw.m1.M1'
 ]
 
 ROOT_URLCONF = 'luffy.urls'
@@ -121,3 +122,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+############ # rest API 配置 # #####################
+
+REST_FRAMEWORK = {
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+    "VERSION_PARAM": "version",
+    "DEFAULT_VERSION": 'v1',
+    "ALLOWED_VERSIONS": ['v1', 'v2'],
+    "UNAUTHENTICATED_USER":None,
+    "UNAUTHENTICATED_TOKEN":None,
+    "DEFAULT_THROTTLE_RATES":{
+        'anon':'5/m',
+        'user':'10/m',
+}
+}
