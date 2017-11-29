@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app01.apps.App01Config',
     'rest_framework',
-    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -50,8 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware'
+    'app01.mw.m1.M1'
+
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -154,3 +154,20 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+############ # rest API 配置 # #####################
+
+REST_FRAMEWORK = {
+    "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.URLPathVersioning",
+    "VERSION_PARAM": "version",
+    "DEFAULT_VERSION": 'v1',
+    "ALLOWED_VERSIONS": ['v1', 'v2'],
+    "UNAUTHENTICATED_USER":None,
+    "UNAUTHENTICATED_TOKEN":None,
+    "DEFAULT_THROTTLE_RATES":{
+        'anon':'5/m',
+        'user':'10/m',
+}
+}
